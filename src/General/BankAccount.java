@@ -14,7 +14,14 @@ public class BankAccount {
 
     public static void main(String[] args) {
 
+        BankAccount ba = new BankAccount();
+        ba.createAccounts();
 
+        do {
+            System.out.println("\n************************************************************");
+            System.out.println("\n****************Welcome to my Bank**************************");
+            ba.validatePINno();
+        }while (true);
 
     }
 
@@ -33,7 +40,7 @@ public class BankAccount {
 
         do {
 
-            System.out.println("\nEnter your PIN no: ");
+            System.out.print("\nEnter your PIN no: ");
             pinNoEntered = console.readPassword();
 
             for (Account account : accounts){
@@ -53,7 +60,7 @@ public class BankAccount {
 
     private void requestWithdrawal() {
 
-        boolean validWithdrawal = true;
+        boolean validWithdrawal = false;
         int withdrawalAmounts[] = {20,40,60,80,100,200};
 
         System.out.println("\nThe maximum withdrawal amount is 200");
@@ -61,7 +68,7 @@ public class BankAccount {
 
         do {
 
-            System.out.println("\nEnter amount to withdrawa: ");
+            System.out.println("\nEnter amount to withdrawal: ");
             try{
                 amountToWithdraw = scanner.nextInt();
                 for (int valid_amount : withdrawalAmounts){
@@ -87,6 +94,19 @@ public class BankAccount {
 
     private void makeWithdrawal() {
 
+        for (Account account : accounts){
+            if (account.getBalance() >= amountToWithdraw){
+                System.out.println("Cash dispensed: " + amountToWithdraw);
+                account.setBalance((account.getBalance() - amountToWithdraw));
+                System.out.println("Your new Balance is : " + account.getBalance());
+                System.out.println("Have nice day.");
+            }else {
+                System.out.println("Insufficient found. ");
+                System.out.println("Existing balance is: " + account.getBalance());
+                System.out.println("Try again");
+                requestWithdrawal();
+            }
+        }
 
     }
 
