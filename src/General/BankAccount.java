@@ -14,6 +14,16 @@ public class BankAccount {
 
 
     }
+
+    public void createAccounts(){
+
+        accounts[0] = new Account("45646432",new char[]{'3','4','3','5'},"Julian","King",100);
+        accounts[1] = new Account("48593741",new char[]{'8','2','4','6'},"Anne","Williams",100);
+        accounts[2] = new Account("15432432",new char[]{'6','1','5','7'},"Derek","James",100);
+
+    }
+
+
 }
 
 class Account{
