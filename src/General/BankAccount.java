@@ -1,5 +1,8 @@
 package General;
 
+import java.io.Console;
+import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BankAccount {
@@ -20,6 +23,70 @@ public class BankAccount {
         accounts[0] = new Account("45646432",new char[]{'3','4','3','5'},"Julian","King",100);
         accounts[1] = new Account("48593741",new char[]{'8','2','4','6'},"Anne","Williams",100);
         accounts[2] = new Account("15432432",new char[]{'6','1','5','7'},"Derek","James",100);
+
+    }
+
+    public void validatePINno(){
+
+        Console console = System.console();
+        boolean pinFound = false;
+
+        do {
+
+            System.out.println("\nEnter your PIN no: ");
+            pinNoEntered = console.readPassword();
+
+            for (Account account : accounts){
+                if (Arrays.toString(pinNoEntered).equals(Arrays.toString(account.getPin()))){
+                    pinFound = true;
+                    break;
+                }
+            }
+            if (!pinFound){
+                System.out.println("Invalid Pin no. entered. ");
+            }else {
+                System.out.println("PIN validate!.");
+                requestWithdrawal();
+            }
+        }while (pinFound != true);
+    }
+
+    private void requestWithdrawal() {
+
+        boolean validWithdrawal = true;
+        int withdrawalAmounts[] = {20,40,60,80,100,200};
+
+        System.out.println("\nThe maximum withdrawal amount is 200");
+        System.out.println("\nEnter an amount: 20 | 40 | 60 | 80 | 100 | 200 ");
+
+        do {
+
+            System.out.println("\nEnter amount to withdrawa: ");
+            try{
+                amountToWithdraw = scanner.nextInt();
+                for (int valid_amount : withdrawalAmounts){
+                    if (valid_amount == amountToWithdraw){
+                        validWithdrawal = true;
+                        break;
+                    }
+                }
+                if (!validWithdrawal){
+                    System.out.println("Valid data entered. ");
+                }
+            }catch (InputMismatchException ex){
+                System.out.println("Data entry must be numeric and must not contain a decimal point.");
+                scanner.nextLine();
+            }
+
+
+        }while (validWithdrawal != true);
+
+        makeWithdrawal();
+        scanner.nextLine();
+    }
+
+    private void makeWithdrawal() {
+
 
     }
 
