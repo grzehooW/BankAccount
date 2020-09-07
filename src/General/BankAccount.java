@@ -1,9 +1,18 @@
 package General;
 
-public class Main {
+import java.util.Scanner;
+
+public class BankAccount {
+
+    Scanner scanner = new Scanner(System.in);
+    Account[] accounts = new Account[3];
+    char[] pinNoEntered;
+    int amountToWithdraw;
 
     public static void main(String[] args) {
-	// write your code here
+
+
+
     }
 }
 
